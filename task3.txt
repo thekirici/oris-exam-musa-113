@@ -1,0 +1,18 @@
+CREATE TABLE brands(
+	id SERIAL PRIMARY KEY,
+    name VARCHAR(64) NOT NULL
+)
+
+CREATE TABLE models(
+	id SERIAL PRIMARY KEY,
+    parent_id INT NOT NULL REFERENCES brands(id) ON DELETE CASCADE,
+    model VARCHAR(64) NOT NULL
+)
+
+INSERT INTO models(model, parent_id)
+	VALUES ('Passat', 1), ('A5', 2), ('S500', 3)
+	
+INSERT INTO brands(name)
+	VALUES ('Volkswagen'), ('Audi'), ('Mercedes')
+	
+DELETE FROM brands WHERE id=1;
